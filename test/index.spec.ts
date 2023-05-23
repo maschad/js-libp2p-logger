@@ -52,4 +52,16 @@ describe('logger', () => {
     expect(log).to.have.property('trace').that.is.a('function')
     expect(log).to.have.nested.property('trace.enabled').that.is.true()
   })
+
+  it('has all formatters', () => {
+    debug.enable('enabled-with-formatters')
+
+    expect(debug.formatters).to.have.property('b').that.is.a('function')
+    expect(debug.formatters).to.have.property('t').that.is.a('function')
+    expect(debug.formatters).to.have.property('m').that.is.a('function')
+    expect(debug.formatters).to.have.property('p').that.is.a('function')
+    expect(debug.formatters).to.have.property('c').that.is.a('function')
+    expect(debug.formatters).to.have.property('k').that.is.a('function')
+    expect(debug.formatters).to.have.property('ma').that.is.a('function')
+  })
 })
