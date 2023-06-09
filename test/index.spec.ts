@@ -12,6 +12,8 @@ import { Key } from 'interface-datastore'
 import sinon from 'sinon'
 
 describe('logger', () => {
+  const debugSpy = sinon.spy(debug, 'log')
+
   it('creates a logger', () => {
     const log = logger('hello')
 
@@ -80,11 +82,20 @@ describe('logger', () => {
 
     const ma = multiaddr('/ip4/127.0.0.1/tcp/4001')
 
-    const debugSpy = sinon.spy(debug, 'log')
-
     log('multiaddr %a', ma)
 
     expect(debugSpy.firstCall.args[0], 'Multiaddr formatting not included').to.include(`multiaddr ${ma.toString()}`)
+  })
+
+  it('test printf style formatting for big int', () => {
+    const log = logger('printf-style')
+    debug.enable('printf-style')
+
+    const bi = BigInt(12345678901234567168)
+
+    log('big int %i', bi)
+
+    expect(debugSpy.secondCall.args[0], 'Big int formatting not included').to.include(`big int ${bi.toString()}`)
   })
 
   it('test ma formatter', () => {
