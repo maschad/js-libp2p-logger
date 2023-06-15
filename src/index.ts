@@ -44,7 +44,7 @@ debug.formatters.a = (v?: Multiaddr): string => {
 
 // Add a formatter for stringifying BigInts
 debug.formatters.i = (v?: bigint): string => {
-  return v == null ? 'undefined' : v.toString()
+  return v == null ? 'undefined' : v.toLocaleString()
 }
 
 export interface Logger {

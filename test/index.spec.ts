@@ -95,7 +95,7 @@ describe('logger', () => {
 
     log('big int %i', bi)
 
-    expect(debugSpy.secondCall.args[0], 'Big int formatting not included').to.include(`big int ${bi.toString()}`)
+    expect(debugSpy.secondCall.args[0], 'Big int formatting not included').to.include(`big int ${bi.toLocaleString()}`)
   })
 
   it('test ma formatter', () => {
